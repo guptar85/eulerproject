@@ -1,28 +1,14 @@
-/*const range = (start, stop, step) => 
-    Array.from(
-        { length: (stop - start) / step + 1}, (_, i) => start + (i * step)
-    );
+const result = (n, l=0) => n === 1 ? ++l : 
+      n %2 == 0 ? (l+=1) && result( (n / 2 ), l) : (l+=2) && result( ( (3* n + 1) / 2 ), l ) ;
 
-console.log(range(0, 4, 2))
-*/
-/*
-const f = (n, a = [n]) =>       // Initialize array with the input number
-  a[a.length - 1] !== 1         // Recurssive call ends when last element is 1
-    ? n % 2 == 0
-      ? f(n / 2, [...a, n / 2])
-      : f(3 * n + 1, [...a, 3 * n + 1])
-    : a;
+let largest = 0, number = 0, r = 0;
 
-console.log(f());
-*/
+for(let i=1; i<1000000;i++) {
+  r = result(i);
+  if (r > largest) { 
+    largest = r ;
+    number = i;
+  }
+}
 
-let len = 1;
-const f = n =>
-  n == 1 ? len : ++len && (n % 2 == 0 ? f(n / 2) : f(3 * n + 1));
-  let i=0
-  while(i<2)  { console.log(f(i)); i++}
-/*
-let arr = [];
-for(let i=0; i<=10;i++) {
-    console.log(f(i))
-}*/
+console.log(number, largest);
